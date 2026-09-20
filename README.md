@@ -8,16 +8,28 @@
   Gits is an open-source browser extension for user-initiated local-business lead research on Google Maps. Configure a niche, location, keywords and filters, review qualified leads and export them to CSV.
 </p>
 
-<p align="center">
-<sub>Gits Main Form</sub><br/><br/>
-<img width="655" src="src/assets/gits-form.png"><br/><br/>
-<sub>Gits Searching Process</sub><br/><br/>
-<img width="655" src="src/assets/gits-process.png"><br/><br/>
-<sub>Gits Result</sub><br/><br/>
-<img src="src/assets/gits-result.png">
-<sub>Gits Settings</sub><br/><br/>
-<img src="src/assets/gits-setting.png">
-</p>
+<table align="center">
+  <tr>
+    <td align="center" valign="top" width="50%">
+      <sub>Gits Main Form</sub><br/><br/>
+      <img src="src/assets/gits-form.png" alt="Gits main search form" width="360" />
+    </td>
+    <td align="center" valign="top" width="50%">
+      <sub>Gits Searching Process</sub><br/><br/>
+      <img src="src/assets/gits-process.png" alt="Gits research progress" width="360" />
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top" width="50%">
+      <sub>Gits Result</sub><br/><br/>
+      <img src="src/assets/gits-result.png" alt="Gits qualified lead results" width="360" />
+    </td>
+    <td align="center" valign="top" width="50%">
+      <sub>Gits Settings</sub><br/><br/>
+      <img src="src/assets/gits-setting.png" alt="Gits settings" width="360" />
+    </td>
+  </tr>
+</table>
 
 ## Tech Stack
 
@@ -48,8 +60,6 @@ In Chrome 120 or newer, open `chrome://extensions`, enable Developer mode, choos
 3. **Start Research** opens a dedicated Google Maps tab. Keep it open while Gits searches. Closing the popup does not clear or stop the session.
 4. Pause/resume or stop research; review saved business details and decision summaries.
 5. Export CSV before choosing **New Search**, which replaces the current local result set.
-
-For development without paid calls, select **Mock · no paid calls** in Settings. Mock mode uses the same Maps automation and persistence pipeline, with clearly labeled local decisions. It does not simulate Maps data in the product.
 
 ## Development and checks
 
