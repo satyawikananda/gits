@@ -14,7 +14,7 @@ export async function getManifest() {
     version: pkg.version,
     description: pkg.description,
     action: {
-      default_icon: 'assets/icon-512.png',
+      default_icon: 'assets/gits-48.png',
       default_popup: 'dist/popup/index.html',
     },
     options_ui: {
@@ -30,31 +30,26 @@ export async function getManifest() {
           service_worker: 'dist/background/index.mjs',
         },
     icons: {
-      16: 'assets/icon-512.png',
-      48: 'assets/icon-512.png',
-      128: 'assets/icon-512.png',
+      16: 'assets/gits-16.png',
+      48: 'assets/gits-48.png',
+      128: 'assets/gits-128.png',
     },
     permissions: [
       'tabs',
       'storage',
-      'activeTab',
-      'sidePanel',
+      'alarms',
     ],
-    host_permissions: ['*://*/*'],
+    host_permissions: ['https://www.google.com/*', 'https://api.typesafe.ai/*'],
+    minimum_chrome_version: '120',
     content_scripts: [
       {
         matches: [
-          '<all_urls>',
+          'https://www.google.com/maps*',
+          'https://www.google.com/sorry/*',
         ],
         js: [
           'dist/contentScripts/index.global.js',
         ],
-      },
-    ],
-    web_accessible_resources: [
-      {
-        resources: ['dist/contentScripts/style.css'],
-        matches: ['<all_urls>'],
       },
     ],
     content_security_policy: {
@@ -63,19 +58,6 @@ export async function getManifest() {
         ? `script-src \'self\' http://localhost:${port}; object-src \'self\'`
         : 'script-src \'self\'; object-src \'self\'',
     },
-  }
-
-  // add sidepanel
-  if (isFirefox) {
-    manifest.sidebar_action = {
-      default_panel: 'dist/sidepanel/index.html',
-    }
-  }
-  else {
-    // the sidebar_action does not work for chromium based
-    (manifest as any).side_panel = {
-      default_path: 'dist/sidepanel/index.html',
-    }
   }
 
   // FIXME: not work in MV3

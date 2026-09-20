@@ -1,138 +1,90 @@
-# WebExtension Vite Starter
-
-A [Vite](https://vitejs.dev/) powered WebExtension ([Chrome](https://developer.chrome.com/docs/extensions/reference/), [FireFox](https://addons.mozilla.org/en-US/developers/), etc.) starter template.
-
 <p align="center">
-<sub>Popup</sub><br/>
-<img width="655" src="https://user-images.githubusercontent.com/11247099/126741643-813b3773-17ff-4281-9737-f319e00feddc.png"><br/>
-<sub>Options Page</sub><br/>
-<img width="655" src="https://user-images.githubusercontent.com/11247099/126741653-43125b62-6578-4452-83a7-bee19be2eaa2.png"><br/>
-<sub>Inject Vue App into the Content Script</sub><br/>
-<img src="https://user-images.githubusercontent.com/11247099/130695439-52418cf0-e186-4085-8e19-23fe808a274e.png">
+  <img src="src/assets/gits-logo.png" alt="Gits logo" width="128" />
 </p>
 
-## Features
+<h1 align="center">Gits (Get Into The Search)</h1>
 
-- ⚡️ **Instant HMR** - use **Vite** on dev (no more refresh!)
-- 🥝 Vue 3 - Composition API, [`<script setup>` syntax](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0040-script-setup.md) and more!
-- 💬 Effortless communications - powered by [`webext-bridge`](https://github.com/serversideup/webext-bridge) and [VueUse](https://github.com/antfu/vueuse) storage
-- 🌈 [UnoCSS](https://github.com/unocss/unocss) - The instant on-demand Atomic CSS engine.
-- 🦾 [TypeScript](https://www.typescriptlang.org/) - type safe
-- 📦 [Components auto importing](./src/components)
-- 🌟 [Icons](./src/components) - Access to icons from any iconset directly
-- 🖥 Content Script - Use Vue even in content script
-- 🌍 WebExtension - isomorphic extension for Chrome, Firefox, and others
-- 📃 Dynamic `manifest.json` with full type support
+<p align="center">
+  Gits is an open-source browser extension for user-initiated local-business lead research on Google Maps. Configure a niche, location, keywords and filters, review qualified leads and export them to CSV.
+</p>
 
-## Pre-packed
+<p align="center">
+<sub>Gits Main Form</sub><br/><br/>
+<img width="655" src="src/assets/gits-form.png"><br/><br/>
+<sub>Gits Searching Process</sub><br/><br/>
+<img width="655" src="src/assets/gits-process.png"><br/><br/>
+<sub>Gits Result</sub><br/><br/>
+<img src="src/assets/gits-result.png">
+<sub>Gits Settings</sub><br/><br/>
+<img src="src/assets/gits-setting.png">
+</p>
 
-### WebExtension Libraries
+## Tech Stack
 
-- [`webextension-polyfill`](https://github.com/mozilla/webextension-polyfill) - WebExtension browser API Polyfill with types
-- [`webext-bridge`](https://github.com/serversideup/webext-bridge) - effortlessly communication between contexts
+Gits is built with the following tools, with credits to their creators:
 
-### Vite Plugins
+1. [Vitesse WebExt](https://github.com/antfu-collective/vitesse-webext) - Browser extension starter template by [Anthony Fu](https://github.com/antfu).
+2. [Vue](https://github.com/vuejs/core) - The Progressive JavaScript Framework
+3. [Vite](https://github.com/vitejs/vite) - Development server and build tooling created
+4. [UnoCSS](https://github.com/unocss/unocss) - On-demand atomic CSS engine by [Anthony Fu](https://github.com/antfu)
+5. [VueUse](https://github.com/vueuse/vueuse) - Vue Composition API utilities by [Anthony Fu](https://github.com/antfu)
+6. [advocaat](https://github.com/pithings/advocaat) - Type-safe AI client for TypeSafe Jev by [Pooya Parsa](https://github.com/pi0).
+7. [webextension-polyfill](https://github.com/mozilla/webextension-polyfill) - Promise-based browser extension APIs by [Mozilla](https://github.com/mozilla).
+8. [Vitest](https://github.com/vitest-dev/vitest) - Unit testing framework powered by Vite
 
-- [`unplugin-auto-import`](https://github.com/unplugin/unplugin-auto-import) - Directly use `browser` and Vue Composition API without importing
-- [`unplugin-vue-components`](https://github.com/unplugin/unplugin-vue-components) - components auto import
-- [`unplugin-icons`](https://github.com/unplugin/unplugin-icons) - icons as components
-  - [Iconify](https://iconify.design) - use icons from any icon sets [🔍Icônes](https://icones.netlify.app/)
+## Install locally
 
-### Vue Plugins
+Gits is not yet available on the Chrome Web Store. You can build and install it locally using the instructions below.
 
-- [VueUse](https://github.com/antfu/vueuse) - collection of useful composition APIs
-
-### UI Frameworks
-
-- [UnoCSS](https://github.com/unocss/unocss) - the instant on-demand Atomic CSS engine
-
-### Coding Style
-
-- Use Composition API with [`<script setup>` SFC syntax](https://github.com/vuejs/rfcs/pull/227)
-- [ESLint](https://eslint.org/) with [@antfu/eslint-config](https://github.com/antfu/eslint-config), single quotes, no semi
-
-### Dev tools
-
-- [TypeScript](https://www.typescriptlang.org/)
-- [pnpm](https://pnpm.js.org/) - fast, disk space efficient package manager
-- [esno](https://github.com/antfu/esno) - TypeScript / ESNext node runtime powered by esbuild
-- [npm-run-all](https://github.com/mysticatea/npm-run-all) - Run multiple npm-scripts in parallel or sequential
-- [web-ext](https://github.com/mozilla/web-ext) - Streamlined experience for developing web extensions
-
-## Use the Template
-
-### GitHub Template
-
-[Create a repo from this template on GitHub](https://github.com/antfu/vitesse-webext/generate).
-
-### Clone to local
-
-If you prefer to do it manually with the cleaner git history
-
-> If you don't have pnpm installed, run: npm install -g pnpm
-
-```bash
-npx degit antfu/vitesse-webext my-webext
-cd my-webext
-pnpm i
+```sh
+bun install
+bun run build
 ```
 
-## Usage
+In Chrome 120 or newer, open `chrome://extensions`, enable Developer mode, choose **Load unpacked**, and select the generated `extension/` directory. Open Gits from the toolbar. The starter Firefox build path is retained but Firefox behavior has not been validated.
 
-### Folders
+1. Enter your Jev API key in Settings and choose **Connect & Continue**. The connection test makes one direct Jev request.
+2. Set a business niche and location, optional comma-separated keywords, filters and target count.
+3. **Start Research** opens a dedicated Google Maps tab. Keep it open while Gits searches. Closing the popup does not clear or stop the session.
+4. Pause/resume or stop research; review saved business details and decision summaries.
+5. Export CSV before choosing **New Search**, which replaces the current local result set.
 
-- `src` - main source.
-  - `contentScript` - scripts and components to be injected as `content_script`
-  - `background` - scripts for background.
-  - `components` - auto-imported Vue components that are shared in popup and options page.
-  - `styles` - styles shared in popup and options page
-  - `assets` - assets used in Vue components
-  - `manifest.ts` - manifest for the extension.
-- `extension` - extension package root.
-  - `assets` - static assets (mainly for `manifest.json`).
-  - `dist` - built files, also serve stub entry for Vite on development.
-- `scripts` - development and bundling helper scripts.
+For development without paid calls, select **Mock · no paid calls** in Settings. Mock mode uses the same Maps automation and persistence pipeline, with clearly labeled local decisions. It does not simulate Maps data in the product.
 
-### Development
+## Development and checks
 
-```bash
-pnpm dev
+```sh
+bun run dev          # Vitesse extension development build with HMR
+bun run typecheck    # Vue templates and TypeScript
+bun run test         # Vitest, non-watch mode
+bun run lint
+bun run build        # production bundle in extension/
 ```
 
-Then **load extension in browser with the `extension/` folder**.
+## Architecture
 
-For Firefox developers, you can run the following command instead:
+- `src/popup/components/`: existing-design screens for configuration, progress, results and settings; `useResearch` handles messaging and storage notifications.
+- `src/background/controller.ts`: serialized UI commands, local BYOK lifecycle, alarm recovery and tab ownership.
+- `src/background/research-runner.ts`: persisted transitions; semantic decisions cannot execute arbitrary browser actions.
+- `src/background/decision-engine.ts`: `JevDecisionEngine` and `MockDecisionEngine`; relevance, qualification and priority are batched into one request. Next research actions are constrained to four choices.
+- `src/background/budget-guard.ts`: reserve each uncached request before dispatch and stop at the session limit; failed calls remain counted.
+- `src/contentScripts/google-maps/`: explicit `search`, `scrollResults`, `openBusiness`, `readBusiness`, `backToResults` operations; selectors are separate from extraction and orchestration.
+- `src/shared/`: strict domain types, deterministic filtering/configuration and CSV generation.
 
-```bash
-pnpm dev-firefox
-```
+The runner persists every transition and resumes via a 30-second browser alarm after worker suspension. Pause/stop increments a control version so late responses cannot overwrite newer user actions. An already dispatched API call can still complete and remains counted. Connection tests are shown separately from per-session budgets.
 
-`web-ext` auto reload the extension when `extension/` files changed.
+## Data, privacy and limits
 
-> While Vite handles HMR automatically in the most of the case, [Extensions Reloader](https://chromewebstore.google.com/detail/extensions-reloader/fimgfedafeadlieiabdeeaodndnlbhid) is still recommended for cleaner hard reloading.
+Your key, settings and active session are stored in browser-local storage, not sync storage. Local storage is not an encrypted vault. The key is sent only directly to `api.typesafe.ai` for authentication; snapshots, logs and CSV exports do not include it. Chromium content scripts are denied local-storage access. Gits has no backend, analytics or cloud account.
 
-## Using Gitpod
+Selected business evidence and your brief are sent to Jev for semantic decisions. Exact duplicate detection, website checks, numeric filters, target counts and CSV generation run locally. Missing data stays unknown. “No website” means no website listed on the loaded Maps details panel, not proof that no website exists elsewhere.
 
-If you have a web browser, you can get a fully pre-configured development environment with one click:
+Supported initially: `www.google.com/maps` with an English UI. Google Maps DOM changes may require selector maintenance. Consent must be handled manually; CAPTCHA and anti-bot states stop research. Jev thresholds and prospecting quality need evaluation against representative real searches. Users are responsible for complying with platform terms and applicable laws.
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/antfu/vitesse-webext)
+Out of scope: outreach, CRM integration, enrichment, general-purpose LLMs, other lead sources, CAPTCHA bypass, cloud synchronization and session history.
 
-### Build
+## License
 
-To build the extension, run
+Licensed under the [MIT License](LICENSE).
 
-```bash
-pnpm build
-```
-
-And then pack files under `extension`, you can upload `extension.crx` or `extension.xpi` to appropriate extension store.
-
-## Credits
-
-[![Volta](https://user-images.githubusercontent.com/904724/195351818-9e826ea9-12a0-4b06-8274-352743cd2047.png)](https://volta.net)
-
-This template is originally made for the [volta.net](https://volta.net) browser extension.
-
-## Variations
-
-This is a variant of [Vitesse](https://github.com/antfu/vitesse), check out the [full variations list](https://github.com/antfu/vitesse#variations).
+Copyright (c) 2026 Satya Wikananda for Gits contributions. Original Vitesse WebExt copyright (c) 2021 Anthony Fu and the MIT license notice are retained.

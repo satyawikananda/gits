@@ -81,9 +81,21 @@ export const sharedConfig: UserConfig = {
 
 export default defineConfig(({ command }) => ({
   ...sharedConfig,
+  // Use fresh dependency URLs instead of the previously cached responses without CORS.
+  cacheDir: r('node_modules/.vite-webext'),
   base: command === 'serve' ? `http://localhost:${port}/` : '/dist/',
   server: {
     port,
+    strictPort: true,
+    // Revalidate modules so extension pages receive the current CORS headers.
+    headers: { 'Cache-Control': 'no-cache' },
+    cors: {
+      origin: [
+        /^https?:\/\/(?:(?:[^:]+\.)?localhost|127\.0\.0\.1|\[::1\])(?::\d+)?$/,
+        /^chrome-extension:\/\/[a-p]{32}$/,
+        /^moz-extension:\/\/[a-f\d-]+$/,
+      ],
+    },
     hmr: {
       host: 'localhost',
     },

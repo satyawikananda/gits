@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "skills": {
+    "advocaat": {
+      "source": "pithings/advocaat",
+      "sourceType": "github",
+      "skillPath": "skills/advocaat/SKILL.md",
+      "computedHash": "e6797533eadd20455c10f0ae59904d200ba9e2e3a39035f321ccc21d400423f4"
+    },
+    "chrome-extensions": {
+      "source": "googlechrome/modern-web-guidance",
+      "sourceType": "github",
+      "skillPath": "skills/chrome-extensions/SKILL.md",
+      "computedHash": "1e8525bb49647008dcd3a6b7e5d3c3207345f086e7a64d7e6d5bcc67dbba7a71"
+    },
+    "typesafe-ai": {
+      "source": "typesafe-ai/skills",
+      "sourceType": "github",
+      "skillPath": "skills/typesafe-ai/SKILL.md",
+      "computedHash": "9cd84c5e535dec8dec59917c110f9c00b4a61faadb86b432ec7e41051170af12"
+    },
+    "unocss": {
+      "source": "antfu/skills",
+      "sourceType": "github",
+      "skillPath": "skills/unocss/SKILL.md",
+      "computedHash": "4b7a9f7b89994d5aef70b9d55cb7f65d6e80cea437d5786cd33bb5cf7231c7c4"
+    },
+    "vue-best-practices": {
+      "source": "vuejs-ai/skills",
+      "sourceType": "github",
+      "skillPath": "skills/vue-best-practices/SKILL.md",
+      "computedHash": "3df585ad31aec78fe55c56c1411262737e6b231677a3153dec512a882fde80cd"
+    },
+    "vueuse-functions": {
+      "source": "vueuse/skills",
+      "sourceType": "github",
+      "skillPath": "skills/vueuse-functions/SKILL.md",
+      "computedHash": "70b65fb127323568380de490290eaf195b165da23c1f4fa27df10b386ca0dab2"
+    }
+  }
+}

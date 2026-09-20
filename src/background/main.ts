@@ -1,65 +1,58 @@
-import { onMessage, sendMessage } from 'webext-bridge/background'
-import type { Tabs } from 'webextension-polyfill'
+import browser from 'webextension-polyfill'
+import type { Runtime } from 'webextension-polyfill'
+import type { Command, Reply, Snapshot } from '../shared/types'
+import { safeError } from '../shared/errors'
+import { restrictLocalStorage } from './privacy'
+import { handleCommand, onResearchAlarm, pumpResearch } from './controller'
 
-// only on dev mode
 if (import.meta.hot) {
-  // @ts-expect-error for background HMR
+  // @ts-expect-error Vite development runtime
   import('/@vite/client')
-  // load latest content script
-  import('./contentScriptHMR')
 }
 
-// remove or turn this off if you don't use side panel
-const USE_SIDE_PANEL = true
-
-// to toggle the sidepanel with the action button in chromium:
-if (USE_SIDE_PANEL) {
-  // @ts-expect-error missing types
-  browser.sidePanel
-    .setPanelBehavior({ openPanelOnActionClick: true })
-    .catch((error: unknown) => console.error(error))
+async function protectedCommand(command: Command) {
+  await restrictLocalStorage()
+  return handleCommand(command)
 }
 
-browser.runtime.onInstalled.addListener((): void => {
-  // eslint-disable-next-line no-console
-  console.log('Extension installed')
-})
-
-let previousTabId = 0
-
-// communication example: send previous tab title from background page
-// see shim.d.ts for type declaration
-browser.tabs.onActivated.addListener(async ({ tabId }) => {
-  if (!previousTabId) {
-    previousTabId = tabId
-    return
-  }
-
-  let tab: Tabs.Tab
-
+async function respond(command: Command): Promise<Reply<Snapshot>> {
   try {
-    tab = await browser.tabs.get(previousTabId)
-    previousTabId = tabId
+    return { ok: true, data: await protectedCommand(command) }
   }
-  catch {
-    return
+  catch (error) {
+    return { ok: false, error: safeError(error).message }
   }
+}
 
-  // eslint-disable-next-line no-console
-  console.log('previous tab', tab)
-  sendMessage('tab-prev', { title: tab.title }, { context: 'content-script', tabId })
+browser.runtime.onMessage.addListener(
+  (raw: unknown, sender: Runtime.MessageSender) => {
+    if (!raw || typeof raw !== 'object')
+      return undefined
+    const message = raw as { channel?: string, command?: Command }
+
+    // A content script must never be able to read or replace a key or start research.
+    if (
+      sender.id !== browser.runtime.id
+      || !['dist/popup/index.html', 'dist/options/index.html'].some(
+        path => sender.url?.split(/[?#]/)[0] === browser.runtime.getURL(path),
+      )
+    ) {
+      return undefined
+    }
+    if (
+      message?.channel !== 'gits-ui'
+      || !message.command
+      || typeof message.command.type !== 'string'
+    ) {
+      return undefined
+    }
+    return respond(message.command)
+  },
+)
+browser.alarms.onAlarm.addListener(alarm => onResearchAlarm(alarm.name))
+browser.runtime.onStartup.addListener(() => {
+  void pumpResearch()
 })
-
-onMessage('get-current-tab', async () => {
-  try {
-    const tab = await browser.tabs.get(previousTabId)
-    return {
-      title: tab?.title,
-    }
-  }
-  catch {
-    return {
-      title: undefined,
-    }
-  }
+browser.runtime.onInstalled.addListener(() => {
+  void pumpResearch()
 })
