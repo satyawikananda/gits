@@ -8,6 +8,12 @@
   Gits is an open-source browser extension for user-initiated local-business lead research on Google Maps. Configure a niche, location, keywords and filters, review qualified leads and export them to CSV.
 </p>
 
+<p align="center">
+  <video src="public/gits-preview.mp4" controls width="720" preload="metadata">
+    <a href="public/gits-preview.mp4">Watch the Gits preview</a>
+  </video>
+</p>
+
 <table align="center">
   <tr>
     <td align="center" valign="top" width="50%">
